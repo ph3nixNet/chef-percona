@@ -11,15 +11,7 @@ pversion = value_for_platform(
   "default" => node["platform_version"].to_i
 )
 
-# select GPG key based on Ubuntu version
-case node['platform']
-when 'ubuntu', 'debian'
-  if node['platform_version'].to_f < 16
-    default["percona"]["apt"]["key"] = "0x1C4CBDCDCD2EFD2A"
-  else
-    default["percona"]["apt"]["key"] = "9334A25F8507EFA5"
-  end
-end
+default["percona"]["apt"]["key"] = "9334A25F8507EFA5"
 
 default["percona"]["apt"]["keyserver"] = "hkp://keyserver.ubuntu.com"
 default["percona"]["apt"]["uri"] = "http://repo.percona.com/apt"
